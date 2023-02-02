@@ -13,9 +13,8 @@ function CityMap() {
   const [city, setCity] = useState("");
   const [drop, setDrop] = useState(false);
   const [location, setLocation] = useState({});
-  const { setAddress, address } = useContext(AddressContext);
+  const { setAddress } = useContext(AddressContext);
   const navigate = useNavigate();
-  let placeArr = [];
   const [allCity] = useState([
     "Bangalore",
     "Hyderabad",
@@ -39,10 +38,9 @@ function CityMap() {
   };
   const handleGetLatLng = (el) => {
     setCity(el);
-    if (el === "Mumbai") {
-      setLocation({ lat: 10.99835602, lng: 77.01502627 });
-    }
-    console.log(el);
+
+    setLocation({ lat: 10.99835602, lng: 77.01502627 });
+
     setDrop(false);
   };
   const cc = () => {
@@ -65,14 +63,12 @@ function CityMap() {
       // This is checking to see if the Geoeode Status is OK before proceeding
       if (status === window.google.maps.GeocoderStatus.OK) {
         var address = results[0].formatted_address;
-        placeArr.push(address);
-        setAddress([...address, placeArr]);
+        setAddress(address);
       }
     });
   };
   const handleGetAdr = (e) => {
     e.preventDefault();
-    console.log(address);
     navigate("/qr");
   };
   return (

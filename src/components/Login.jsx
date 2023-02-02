@@ -63,7 +63,6 @@ function Login() {
           alert(err.message);
         });
     }
-    console.log(loginData);
   };
   return (
     <div className="signupContainer">
